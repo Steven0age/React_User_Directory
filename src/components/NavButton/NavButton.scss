@@ -1,0 +1,5 @@
+.navButton {
+  @include centered-row();
+  @include cardDesign();
+  width: 100%;
+}
