@@ -13,31 +13,31 @@ export default function UserCard() {
       <div className="user-card__data-area">
         <div className="structured-data__head">
           <h2>NAME DES USERS</h2>
-          <Icon />
+          <Icon icon="website" />
         </div>
         <div className="structured-data__body">
           <div className="structured-data__single-data">
-            <Icon />
+            <Icon icon="birth" />
             <p>DATA</p>
           </div>
           <div className="structured-data__single-data">
-            <Icon />
+            <Icon icon="address" />
             <p>DATA</p>
           </div>
           <div className="structured-data__single-data">
-            <Icon />
+            <Icon icon="gender" />
             <p>DATA</p>
           </div>
           <div className="structured-data__single-data">
-            <Icon />
+            <Icon icon="phone" />
             <p>DATA</p>
           </div>
           <div className="structured-data__single-data">
-            <Icon />
+            <Icon icon="mail" />
             <p>DATA</p>
           </div>
           <div className="structured-data__single-data">
-            <Icon />
+            <Icon icon="website" />
             <p>DATA</p>
           </div>
         </div>
