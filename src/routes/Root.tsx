@@ -10,10 +10,10 @@ function Root() {
   return (
     <div className="root-layout">
       <aside className="sidebar">
-        <div className="sidebar--header">
+        <div className="sidebar__header">
           <h1>My App</h1>
         </div>
-        <nav className="sidebar--nav">
+        <nav className="sidebar__nav">
           <NavButton buttonName="Übersicht" buttonTarget="/ansicht" />
           <NavButton buttonName="Erstellen" buttonTarget="/erstellen" />
         </nav>

@@ -10,12 +10,12 @@
   flex-shrink: 0;
   border-right: 1px solid $primary-color;
 
-  &--header {
+  &__header {
     @include centered-row;
     padding: 1rem 0rem;
     border-bottom: 1px solid $primary-color;
   }
-  &--nav {
+  &__nav {
     @include centered-column;
     gap: 0.5rem;
     padding: 1rem 0.5rem;
