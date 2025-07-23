@@ -1,148 +1,154 @@
 import "./Icon.scss";
 
-// type singleIconType={
-//   source:string,
-//   path: JSX.Element;
-// };
-// type iconsLibrary =singleIconType{};
+type IconKey =
+  | "birth"
+  | "address"
+  | "gender"
+  | "phone"
+  | "mail"
+  | "website"
+  | "delete";
 
-type IconKey = "birth" | "address";
-
-interface IconEntry {
+type IconEntry = {
   source: string;
-  path: JSX.Element;
-}
+  code: React.ReactElement;
+};
 
-export default function Icon({ icon }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="icon"
-    >
-      {iconsLibrary[icon].path}
-    </svg>
-  );
+export default function Icon({ icon }: { icon: IconKey }) {
+  return iconsLibrary[icon].code;
 }
 
 const iconsLibrary: Record<IconKey, IconEntry> = {
   birth: {
-    source: "https://heroicons.com/cake",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z"
-      />
+    source: "https://freesvgicons.com/search?q=birth",
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 1792 1792"
+        className="icon"
+      >
+        <path
+          fill="currentColor"
+          d="M1792 1408v384H0v-384q45 0 85-14t59-27.5t47-37.5q30-27 51.5-38t56.5-11q24 0 44 7t31 15t33 27q29 25 47 38t58 27t86 14q45 0 85-14.5t58-27t48-37.5q21-19 32.5-27t31-15t43.5-7q35 0 56.5 11t51.5 38q28 24 47 37.5t59 27.5t85 14t85-14t59-27.5t47-37.5q30-27 51.5-38t56.5-11q34 0 55.5 11t51.5 38q28 24 47 37.5t59 27.5t85 14zm0-320v192q-24 0-44-7t-31-15t-33-27q-29-25-47-38t-58-27t-85-14q-46 0-86 14t-58 27t-47 38q-22 19-33 27t-31 15t-44 7q-35 0-56.5-11t-51.5-38q-29-25-47-38t-58-27t-86-14q-45 0-85 14.5t-58 27t-48 37.5q-21 19-32.5 27t-31 15t-43.5 7q-35 0-56.5-11t-51.5-38q-28-24-47-37.5t-59-27.5t-85-14q-46 0-86 14t-58 27t-47 38q-30 27-51.5 38T0 1280v-192q0-80 56-136t136-56h64V448h256v448h256V448h256v448h256V448h256v448h64q80 0 136 56t56 136zM512 224q0 77-36 118.5T384 384q-53 0-90.5-37.5T256 256q0-29 9.5-51t23.5-34t31-28t31-31.5T374.5 67T384 0q38 0 83 74t45 150zm512 0q0 77-36 118.5T896 384q-53 0-90.5-37.5T768 256q0-29 9.5-51t23.5-34t31-28t31-31.5T886.5 67T896 0q38 0 83 74t45 150zm512 0q0 77-36 118.5t-92 41.5q-53 0-90.5-37.5T1280 256q0-29 9.5-51t23.5-34t31-28t31-31.5t23.5-44.5t9.5-67q38 0 83 74t45 150z"
+        />
+      </svg>
     ),
   },
+
   address: {
-    source: "URL",
-    path: ``,
-  },
-  gender: {
-    source: "https://icons.getbootstrap.com/icons/gender-ambiguous/",
-    path: (
-      <path
-        fill-rule="evenodd"
-        d="M11.5 1a.5.5 0 0 1 0-1h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-3.45 3.45A4 4 0 0 1 8.5 10.97V13H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V14H6a.5.5 0 0 1 0-1h1.5v-2.03a4 4 0 1 1 3.471-6.648L14.293 1zm-.997 4.346a3 3 0 1 0-5.006 3.309 3 3 0 0 0 5.006-3.31z"
-      />
+    source: "https://freesvgicons.com/search?q=address",
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 512 512"
+        className="icon"
+      >
+        <path
+          fill="currentColor"
+          d="M96 0C60.7 0 32 28.7 32 64v384c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zm112 288h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H144c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0a64 64 0 1 1-128 0zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zm-16 112c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16v-64c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16v-64z"
+        />
+      </svg>
     ),
   },
+
+  gender: {
+    source: "https://freesvgicons.com/search?q=gender",
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 256 256"
+        className="icon"
+      >
+        <path
+          fill="currentColor"
+          d="M208 20h-40a12 12 0 0 0 0 24h11l-15.64 15.67A68 68 0 1 0 108 178.92V188H88a12 12 0 0 0 0 24h20v20a12 12 0 0 0 24 0v-20h20a12 12 0 0 0 0-24h-20v-9.08a67.93 67.93 0 0 0 46.9-100.84L196 61v11a12 12 0 0 0 24 0V32a12 12 0 0 0-12-12Zm-88 136a44 44 0 1 1 44-44a44.05 44.05 0 0 1-44 44Z"
+        />
+      </svg>
+    ),
+  },
+
   phone: {
     source: "https://heroicons.com/solid/phone",
-    path: (
-      <path
-        fillRule="evenodd"
-        d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
-        clipRule="evenodd"
-      />
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="icon"
+      >
+        <path
+          fillRule="evenodd"
+          d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+          clipRule="evenodd"
+        />
+      </svg>
     ),
   },
+
   mail: {
-    source: "URL",
-    path: ``,
+    source: "https://freesvgicons.com/search?q=mail",
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 24 24"
+        className="icon"
+      >
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M23 20V6l-11 9L1 6v14h22Zm-11-8l10-8H2l10 8Z"
+        />
+      </svg>
+    ),
   },
+
   website: {
-    source: "URL",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-      />
+    source: "https://freesvgicons.com/search?q=world",
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 24 24"
+        className="icon"
+      >
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m.6-3h16.8M3.6 15h16.8" />
+          <path d="M11.5 3a17 17 0 0 0 0 18m1-18a17 17 0 0 1 0 18" />
+        </g>
+      </svg>
+    ),
+  },
+
+  delete: {
+    source: "https://freesvgicons.com/search?q=cancel",
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 32 32"
+        className="icon"
+      >
+        <path
+          fill="currentColor"
+          d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3zm0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5zm-3.78 5.78l-1.44 1.44L14.564 16l-3.782 3.78l1.44 1.44L16 17.437l3.78 3.78l1.44-1.437L17.437 16l3.78-3.78l-1.437-1.44L16 14.564l-3.78-3.782z"
+        />
+      </svg>
     ),
   },
 };
-
-const DONEbirth = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="size-6"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z"
-    />
-  </svg>
-);
-
-const address = "";
-
-const DONEgender = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    fill="currentColor"
-    className="bi bi-gender-ambiguous"
-    viewBox="0 0 16 16"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M11.5 1a.5.5 0 0 1 0-1h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-3.45 3.45A4 4 0 0 1 8.5 10.97V13H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V14H6a.5.5 0 0 1 0-1h1.5v-2.03a4 4 0 1 1 3.471-6.648L14.293 1zm-.997 4.346a3 3 0 1 0-5.006 3.309 3 3 0 0 0 5.006-3.31z"
-    />
-  </svg>
-);
-
-const phone = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="size-6"
-  >
-    <path
-      fillRule="evenodd"
-      d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
-
-const mail = "";
-
-const website = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="icon"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-    />
-  </svg>
-);
