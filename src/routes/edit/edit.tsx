@@ -1,7 +1,9 @@
+import Input from "../../components/InputForm/InputForm";
+
 export default function Edit() {
   return (
     <>
-      <h1>Bearbeiten - Seite</h1>
+      <Input />
     </>
   );
 }
