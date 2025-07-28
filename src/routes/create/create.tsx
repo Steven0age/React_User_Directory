@@ -1,7 +1,9 @@
+import Input from "../../components/InputForm/InputForm";
+
 export default function Create() {
   return (
     <>
-      <h1>Erstellen - Seite</h1>
+      <Input />
     </>
   );
 }

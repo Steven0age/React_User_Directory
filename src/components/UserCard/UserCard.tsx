@@ -13,7 +13,7 @@ export default function UserCard() {
       <div className="user-card__data-area">
         <div className="structured-data__head">
           <h2>NAME DES USERS</h2>
-          <Icon icon="website" />
+          <Icon icon="delete" />
         </div>
         <div className="structured-data__body">
           <div className="structured-data__single-data">
