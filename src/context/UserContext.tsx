@@ -1,8 +1,11 @@
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import type { UserArray, UserCardProps } from "../components/types/user";
+import { getFromLocalStorage } from "../api/api";
 
 type UserContextType = {
-  user: UserArray;
+  users: UserArray;
+  user?: UserArray;
+  loadSavedUsers: () => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -22,9 +25,21 @@ export function UserProvider({ children }: { children: ReactNode }) {
       website: "stephan-haak.com",
     },
   ];
+  const [users, setUsers] = useState<UserArray>([]);
+
+  const loadSavedUsers = () => {
+    const getData = getFromLocalStorage();
+    if (!getData || getData.length == 0) {
+      setUsers(user);
+      return;
+    } else {
+      setUsers(getData);
+    }
+  };
 
   const value: UserContextType = {
-    user,
+    users,
+    loadSavedUsers,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
