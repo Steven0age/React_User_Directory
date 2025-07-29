@@ -1,44 +1,51 @@
 import Icon from "../Icon/Icon";
+import type { UserCardProps } from "../types/user";
 import "./UserCard.scss";
 
-export default function UserCard() {
+export default function UserCard({
+  pictureUrl,
+  userName,
+  birthdate,
+  address,
+  gender,
+  phone,
+  mail,
+  website,
+}: UserCardProps) {
   return (
     <div className="user-card">
       <div className="user-card__image-area">
-        <img
-          src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
-          className="user-card__image"
-        ></img>
+        <img src={pictureUrl} className="user-card__image"></img>
       </div>
       <div className="user-card__data-area">
         <div className="structured-data__head">
-          <h2>NAME DES USERS</h2>
+          <h2>{userName}</h2>
           <Icon icon="delete" />
         </div>
         <div className="structured-data__body">
           <div className="structured-data__single-data">
             <Icon icon="birth" />
-            <p>DATA</p>
+            <p>{birthdate}</p>
           </div>
           <div className="structured-data__single-data">
             <Icon icon="address" />
-            <p>DATA</p>
+            <p>{address}</p>
           </div>
           <div className="structured-data__single-data">
             <Icon icon="gender" />
-            <p>DATA</p>
+            <p>{gender}</p>
           </div>
           <div className="structured-data__single-data">
             <Icon icon="phone" />
-            <p>DATA</p>
+            <p>{phone}</p>
           </div>
           <div className="structured-data__single-data">
             <Icon icon="mail" />
-            <p>DATA</p>
+            <p>{mail}</p>
           </div>
           <div className="structured-data__single-data">
             <Icon icon="website" />
-            <p>DATA</p>
+            <p>{website}</p>
           </div>
         </div>
       </div>
