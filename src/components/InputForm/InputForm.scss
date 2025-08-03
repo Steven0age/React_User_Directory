@@ -4,7 +4,8 @@
   }
 
   input,
-  select {
+  select,
+  button {
     @include cardDesign;
     border: unset;
     margin-bottom: 1.3rem;

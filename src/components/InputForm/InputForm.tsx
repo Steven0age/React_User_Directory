@@ -12,6 +12,7 @@ type InputProps = {
   addressValue: string;
   phoneValue: string;
   websiteValue: string;
+  clickHandler: () => void;
 };
 
 export default function Input({
@@ -23,6 +24,7 @@ export default function Input({
   addressValue,
   phoneValue,
   websiteValue,
+  clickHandler,
 }: InputProps) {
   return (
     <div className="form">
@@ -101,7 +103,14 @@ export default function Input({
           onChange={handleInputChangeEvent}
         />
         <br></br>
-        <input className="submit-btn" type="submit" value="Speichern" />
+        <button
+          className="submit-btn"
+          type="button"
+          value="Speichern"
+          onClick={clickHandler}
+        >
+          Speichern
+        </button>
       </form>
     </div>
   );

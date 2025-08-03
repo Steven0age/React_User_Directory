@@ -1,11 +1,18 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import type { UserArray, UserCardProps } from "../components/types/user";
-import { getFromLocalStorage } from "../api/api";
+import { addToLocalStorage, getFromLocalStorage } from "../api/api";
 
 type UserContextType = {
   users: UserArray;
   user?: UserArray;
   loadSavedUsers: () => void;
+  saveUsers: (newUser: UserCardProps) => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -27,19 +34,28 @@ export function UserProvider({ children }: { children: ReactNode }) {
   ];
   const [users, setUsers] = useState<UserArray>([]);
 
+  useEffect(() => {
+    addToLocalStorage(users);
+  }, [users]);
+
   const loadSavedUsers = () => {
     const getData = getFromLocalStorage();
     if (!getData || getData.length == 0) {
-      setUsers(user);
       return;
     } else {
       setUsers(getData);
     }
   };
 
+  const saveUsers = (newUser: UserCardProps) => {
+    const newArray = [...users, newUser];
+    setUsers(newArray);
+  };
+
   const value: UserContextType = {
     users,
     loadSavedUsers,
+    saveUsers,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -5,7 +5,7 @@ export default function useFormInputs() {
   const [birthdateValue, setBirthdate] = useState("");
   const [genderValue, setGender] = useState("");
   const [mailValue, setMail] = useState("");
-  const [addressalue, setAddress] = useState("");
+  const [addressValue, setAddress] = useState("");
   const [phoneValue, setPhone] = useState("");
   const [websiteValue, setWebsite] = useState("");
 
@@ -43,7 +43,7 @@ export default function useFormInputs() {
     birthdateValue,
     genderValue,
     mailValue,
-    addressalue,
+    addressValue,
     phoneValue,
     websiteValue,
     handleInputChangeEvent,
