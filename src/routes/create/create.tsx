@@ -26,6 +26,7 @@ export default function Create() {
             phone: data.phoneValue,
             mail: data.mailValue,
             website: data.websiteValue,
+            userId: "",
           });
         }}
       />

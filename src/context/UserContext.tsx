@@ -58,6 +58,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       default:
         newUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
     }
+
+    newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
+
     const newArray = [...users, newUser];
     setUsers(newArray);
   };

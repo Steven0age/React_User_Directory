@@ -7,6 +7,7 @@ export type UserCardProps = {
   phone: string;
   mail: string;
   website: string;
+  userId: string;
 };
 
 export type UserArray = UserCardProps[];
