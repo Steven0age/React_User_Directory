@@ -48,6 +48,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
 
   const saveUsers = (newUser: UserCardProps) => {
+    switch (newUser.gender) {
+      case "Männlich":
+        newUser.pictureUrl = "src/assets/profile-pictures/male.jpg";
+        break;
+      case "Weiblich":
+        newUser.pictureUrl = "src/assets/profile-pictures/female.jpg";
+        break;
+      default:
+        newUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
+    }
     const newArray = [...users, newUser];
     setUsers(newArray);
   };

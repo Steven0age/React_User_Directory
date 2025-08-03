@@ -18,7 +18,7 @@ export default function Create() {
         websiteValue={data.websiteValue}
         clickHandler={() => {
           saveUsers({
-            pictureUrl: "src/assets/profile-pictures/male.jpg",
+            pictureUrl: data.genderValue,
             userName: data.usernameValue,
             birthdate: data.birthdateValue,
             address: data.addressValue,
