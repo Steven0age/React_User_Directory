@@ -1,14 +1,9 @@
 import "./overview.scss";
 import UserCard from "../../components/UserCard/UserCard";
 import { useUser } from "../../context/UserContext";
-import { useEffect } from "react";
 
 export default function Overview() {
-  const { users, loadSavedUsers } = useUser();
-
-  useEffect(() => {
-    loadSavedUsers();
-  }, []);
+  const { users } = useUser();
 
   return (
     <>

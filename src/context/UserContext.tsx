@@ -68,7 +68,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
     const newArray = [...users, newUser];
-    console.log("speichere:", users, "neuesArray:", newArray);
     setUsers(newArray);
   };
 
