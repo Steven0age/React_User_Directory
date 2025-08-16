@@ -38,6 +38,16 @@ export default function useFormInputs() {
     }
   }
 
+  function resetForm() {
+    setUsername("");
+    setBirthdate("");
+    setGender("");
+    setMail("");
+    setAddress("");
+    setPhone("");
+    setWebsite("");
+  }
+
   return {
     usernameValue,
     birthdateValue,
@@ -47,5 +57,6 @@ export default function useFormInputs() {
     phoneValue,
     websiteValue,
     handleInputChangeEvent,
+    resetForm,
   };
 }
