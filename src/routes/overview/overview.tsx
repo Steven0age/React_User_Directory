@@ -11,7 +11,7 @@ export default function Overview() {
       <div className="overview">
         {users.map((i) => (
           <UserCard
-            userId={i.userId}
+            key={i.userId}
             pictureUrl={i.pictureUrl}
             userName={i.userName}
             birthdate={i.birthdate}
