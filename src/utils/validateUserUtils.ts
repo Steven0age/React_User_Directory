@@ -11,6 +11,6 @@ const requiredKeys: (keyof UserCardProps)[] = [
 ];
 
 export function validateUser(user: UserCardProps) {
-  const allFieldsFilled = requiredKeys.every((i) => user[i] !== "");
+  const allFieldsFilled = requiredKeys.every((i) => user[i].trim() !== "");
   return allFieldsFilled;
 }
