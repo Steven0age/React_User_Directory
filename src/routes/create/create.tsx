@@ -1,4 +1,4 @@
-import Input from "../../components/InputForm/InputForm";
+import InputForm from "../../components/InputForm/InputForm";
 import { useUser } from "../../context/UserContext";
 import useFormInputs from "../../hooks/useFormInputs";
 
@@ -7,7 +7,7 @@ export default function Create() {
   const { saveUsers } = useUser();
   return (
     <>
-      <Input
+      <InputForm
         handleInputChangeEvent={data.handleInputChangeEvent}
         usernameValue={data.usernameValue}
         birthdateValue={data.birthdateValue}

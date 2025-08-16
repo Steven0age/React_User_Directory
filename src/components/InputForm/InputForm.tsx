@@ -15,7 +15,7 @@ type InputProps = {
   clickHandler: () => void;
 };
 
-export default function Input({
+export default function InputForm({
   handleInputChangeEvent,
   usernameValue,
   genderValue,

@@ -7,6 +7,7 @@ import {
 } from "react";
 import type { UserArray, UserCardProps } from "../components/types/user";
 import { addToLocalStorage, getFromLocalStorage } from "../api/api";
+import { validateUser } from "../utils/validateUserUtils";
 
 type UserContextType = {
   users: UserArray;
@@ -48,6 +49,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
 
   const saveUsers = (newUser: UserCardProps) => {
+    if (!validateUser(newUser)) {
+      alert("Bitte zuerst alle Felder ausfüllen");
+      return;
+    }
+
     switch (newUser.gender) {
       case "Männlich":
         newUser.pictureUrl = "src/assets/profile-pictures/male.jpg";
@@ -62,6 +68,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
     const newArray = [...users, newUser];
+    console.log("speichere:", users, "neuesArray:", newArray);
     setUsers(newArray);
   };
 
@@ -76,6 +83,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
 export function useUser() {
   const ctx = useContext(UserContext);
-  if (!ctx) throw new Error("useUSer must be used within <UserProvider>");
+  if (!ctx) throw new Error("useUser must be used within <UserProvider>");
   return ctx;
 }
