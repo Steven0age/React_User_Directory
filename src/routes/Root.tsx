@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export { Root, Overview, Create, Edit };
 function Root() {
-  const { users, loadSavedUsers } = useUser();
+  const { loadSavedUsers } = useUser();
 
   useEffect(() => {
     loadSavedUsers();

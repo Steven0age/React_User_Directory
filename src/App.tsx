@@ -23,6 +23,12 @@ function App() {
         {
           path: "bearbeiten",
           element: <Edit />,
+          children: [
+            {
+              path: ":id",
+              element: <Edit />,
+            },
+          ],
         },
       ],
     },

@@ -2,14 +2,16 @@ import "./overview.scss";
 import UserCard from "../../components/UserCard/UserCard";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function Overview() {
   const { users } = useUser();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   function editUser(id: string | undefined) {
-    navigate(`/bearbeiten/`);
-    //navigate(`/bearbeiten/${id}`);
+    //navigate(`/bearbeiten/`);
+    navigate(`/bearbeiten/${id}`);
     console.log("id lautet:", id);
   }
   return (
