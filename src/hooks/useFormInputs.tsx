@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent } from "react";
+import type { UserCardProps } from "../components/types/user";
 
 export default function useFormInputs() {
   const [usernameValue, setUsername] = useState("");
@@ -48,6 +49,16 @@ export default function useFormInputs() {
     setWebsite("");
   }
 
+  function setForm(userData: UserCardProps) {
+    setUsername(userData.userName);
+    setBirthdate(userData.birthdate);
+    setGender(userData.gender);
+    setMail(userData.mail);
+    setAddress(userData.address);
+    setPhone(userData.phone);
+    setWebsite(userData.website);
+  }
+
   return {
     usernameValue,
     birthdateValue,
@@ -58,5 +69,6 @@ export default function useFormInputs() {
     websiteValue,
     handleInputChangeEvent,
     resetForm,
+    setForm,
   };
 }

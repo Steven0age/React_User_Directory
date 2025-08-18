@@ -10,9 +10,7 @@ export default function Overview() {
   const { id } = useParams();
 
   function editUser(id: string | undefined) {
-    //navigate(`/bearbeiten/`);
     navigate(`/bearbeiten/${id}`);
-    console.log("id lautet:", id);
   }
   return (
     <>

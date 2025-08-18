@@ -4,7 +4,7 @@ import useFormInputs from "../../hooks/useFormInputs";
 
 export default function Create() {
   const data = useFormInputs();
-  const { saveUsers } = useUser();
+  const { users, saveUsers } = useUser();
   return (
     <>
       <InputForm
