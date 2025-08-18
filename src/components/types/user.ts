@@ -8,6 +8,7 @@ export type UserCardProps = {
   mail: string;
   website: string;
   userId?: string;
+  onClick?: () => void;
 };
 
 export type UserArray = UserCardProps[];

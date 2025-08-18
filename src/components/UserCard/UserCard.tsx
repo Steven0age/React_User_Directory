@@ -11,9 +11,10 @@ export default function UserCard({
   phone,
   mail,
   website,
+  onClick,
 }: UserCardProps) {
   return (
-    <div className="user-card">
+    <div className="user-card" onClick={onClick}>
       <div className="user-card__image-area">
         <img src={pictureUrl} className="user-card__image"></img>
       </div>
