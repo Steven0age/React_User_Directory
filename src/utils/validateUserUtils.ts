@@ -1,4 +1,4 @@
-import type { UserCardProps } from "../components/types/user";
+import type { UserArray, UserCardProps } from "../components/types/user";
 
 const requiredKeys: (keyof UserCardProps)[] = [
   "userName",
@@ -13,4 +13,12 @@ const requiredKeys: (keyof UserCardProps)[] = [
 export function validateUser(user: UserCardProps) {
   const allFieldsFilled = requiredKeys.every((i) => user[i].trim() !== "");
   return allFieldsFilled;
+}
+
+export function findExistingUser(userId: UserCardProps, users: UserArray) {
+  const existingUserId = users.findIndex((i) => {
+    return i.userId === userId;
+  });
+
+  return existingUserId >= 0 ? existingUserId : false;
 }

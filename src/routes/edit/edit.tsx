@@ -3,19 +3,22 @@ import { useParams } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import useFormInputs from "../../hooks/useFormInputs";
 import { useEffect } from "react";
+import { findExistingUser } from "../../utils/validateUserUtils";
 
 export default function Edit() {
   const params = useParams();
   const { users, saveUsers } = useUser();
   const data = useFormInputs();
 
-  //  console.log("users =", users);
-  const editUserId = users.findIndex((i) => {
-    return i.userId === params.id;
-  });
-  useEffect(() => {
-    data.setForm(users[editUserId]);
-  }, []);
+  if (findExistingUser(params.id)) {
+    const editUserId = findExistingUser(params.id);
+
+    console.log("user =", users);
+    useEffect(() => {
+      data.setForm(users[editUserId]);
+    }, []);
+  }
+
   return (
     <>
       <h1>User {params.id} wird bearbeitet</h1>

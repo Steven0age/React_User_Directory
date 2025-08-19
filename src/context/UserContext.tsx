@@ -12,7 +12,6 @@ import { findExistingUser, validateUser } from "../utils/validateUserUtils";
 type UserContextType = {
   users: UserArray;
   user?: UserArray;
-  loadSavedUsers: () => void;
   saveUsers: (newUser: UserCardProps) => void;
 };
 
@@ -33,21 +32,19 @@ export function UserProvider({ children }: { children: ReactNode }) {
       website: "stephan-haak.com",
     },
   ];
-  const [users, setUsers] = useState<UserArray>([]);
+
+  const [users, setUsers] = useState<UserArray>(() => {
+    const getData = getFromLocalStorage();
+    if (!getData || getData.length === 0) {
+      return [];
+    } else {
+      return getData;
+    }
+  });
 
   useEffect(() => {
-    loadSavedUsers();
     addToLocalStorage(users);
   }, [users]);
-
-  const loadSavedUsers = () => {
-    const getData = getFromLocalStorage();
-    if (!getData || getData.length == 0) {
-      return;
-    } else {
-      setUsers(getData);
-    }
-  };
 
   const saveUsers = (newUser: UserCardProps) => {
     if (!validateUser(newUser)) {
@@ -57,8 +54,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
-    const result = findExistingUser(newUser.userId);
-    console.log("result =", result);
+    if (findExistingUser(newUser.userId, users) !== false) {
+      alert("Nicht möglich - User existiert bereits");
+      return;
+    }
 
     switch (newUser.gender) {
       case "Männlich":
@@ -71,7 +70,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         newUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
     }
 
-    //newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
+    //    newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
     const newArray = [...users, newUser];
     setUsers(newArray);
@@ -79,7 +78,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const value: UserContextType = {
     users,
-    loadSavedUsers,
     saveUsers,
   };
 
