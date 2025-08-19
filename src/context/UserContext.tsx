@@ -7,7 +7,7 @@ import {
 } from "react";
 import type { UserArray, UserCardProps } from "../components/types/user";
 import { addToLocalStorage, getFromLocalStorage } from "../api/api";
-import { validateUser } from "../utils/validateUserUtils";
+import { findExistingUser, validateUser } from "../utils/validateUserUtils";
 
 type UserContextType = {
   users: UserArray;
@@ -36,6 +36,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [users, setUsers] = useState<UserArray>([]);
 
   useEffect(() => {
+    loadSavedUsers();
     addToLocalStorage(users);
   }, [users]);
 
@@ -54,6 +55,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
+
+    const result = findExistingUser(newUser.userId);
+    console.log("result =", result);
+
     switch (newUser.gender) {
       case "Männlich":
         newUser.pictureUrl = "src/assets/profile-pictures/male.jpg";
@@ -65,7 +71,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         newUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
     }
 
-    newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
+    //newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
     const newArray = [...users, newUser];
     setUsers(newArray);

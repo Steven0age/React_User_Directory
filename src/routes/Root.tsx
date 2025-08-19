@@ -4,17 +4,9 @@ import Overview from "./overview/overview";
 import Create from "./create/create";
 import Edit from "./edit/edit";
 import NavButton from "../components/NavButton/NavButton";
-import { useUser } from "../context/UserContext";
-import { useEffect } from "react";
 
 export { Root, Overview, Create, Edit };
 function Root() {
-  const { loadSavedUsers } = useUser();
-
-  useEffect(() => {
-    loadSavedUsers();
-  }, []);
-
   return (
     <div className="root-layout">
       <aside className="sidebar">
