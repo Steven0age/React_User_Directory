@@ -7,11 +7,11 @@ import { findExistingUser } from "../../utils/validateUserUtils";
 
 export default function Edit() {
   const params = useParams();
-  const { users, saveUsers } = useUser();
+  const { users, updateUser } = useUser();
   const data = useFormInputs();
 
-  if (findExistingUser(params.id)) {
-    const editUserId = findExistingUser(params.id);
+  if (params.id) {
+    const editUserId = findExistingUser(params.id, users);
 
     console.log("user =", users);
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Edit() {
         phoneValue={data.phoneValue}
         websiteValue={data.websiteValue}
         clickHandler={() => {
-          saveUsers({
+          updateUser({
             pictureUrl: data.genderValue,
             userName: data.usernameValue,
             birthdate: data.birthdateValue,

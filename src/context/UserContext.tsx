@@ -12,7 +12,8 @@ import { findExistingUser, validateUser } from "../utils/validateUserUtils";
 type UserContextType = {
   users: UserArray;
   user?: UserArray;
-  saveUsers: (newUser: UserCardProps) => void;
+  saveUser: (newUser: UserCardProps) => void;
+  updateUser: (editableUser: UserCardProps) => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -46,7 +47,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     addToLocalStorage(users);
   }, [users]);
 
-  const saveUsers = (newUser: UserCardProps) => {
+  const saveUser = (newUser: UserCardProps) => {
     if (!validateUser(newUser)) {
       alert("Bitte zuerst alle Felder ausfüllen");
       return;
@@ -70,15 +71,39 @@ export function UserProvider({ children }: { children: ReactNode }) {
         newUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
     }
 
-    //    newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
-
     const newArray = [...users, newUser];
+    setUsers(newArray);
+  };
+
+  const updateUser = (editableUser: UserCardProps) => {
+    if (!validateUser(editableUser)) {
+      alert("Bitte zuerst alle Felder ausfüllen");
+      return;
+    }
+
+    editableUser.userId = `${editableUser.userName}-${editableUser.birthdate}`;
+
+    switch (editableUser.gender) {
+      case "Männlich":
+        editableUser.pictureUrl = "src/assets/profile-pictures/male.jpg";
+        break;
+      case "Weiblich":
+        editableUser.pictureUrl = "src/assets/profile-pictures/female.jpg";
+        break;
+      default:
+        editableUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
+    }
+
+    const newArray = [...users];
+    const arrayIndex = findExistingUser(editableUser.userId, users);
+    newArray.splice(arrayIndex, 1, editableUser);
     setUsers(newArray);
   };
 
   const value: UserContextType = {
     users,
-    saveUsers,
+    saveUser,
+    updateUser,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

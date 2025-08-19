@@ -4,7 +4,7 @@ import useFormInputs from "../../hooks/useFormInputs";
 
 export default function Create() {
   const data = useFormInputs();
-  const { saveUsers } = useUser();
+  const { saveUser } = useUser();
   return (
     <>
       <InputForm
@@ -17,7 +17,7 @@ export default function Create() {
         phoneValue={data.phoneValue}
         websiteValue={data.websiteValue}
         clickHandler={() => {
-          saveUsers({
+          saveUser({
             pictureUrl: data.genderValue,
             userName: data.usernameValue,
             birthdate: data.birthdateValue,
