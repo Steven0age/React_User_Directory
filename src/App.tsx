@@ -25,6 +25,10 @@ function App() {
           element: <Edit />,
           children: [
             {
+              index: true,
+              element: <Edit />,
+            },
+            {
               path: ":id",
               element: <Edit />,
             },

@@ -2,6 +2,7 @@ import InputForm from "../../components/InputForm/InputForm";
 import { useParams } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import useFormInputs from "../../hooks/useFormInputs";
+import { useEffect } from "react";
 
 export default function Edit() {
   const params = useParams();
@@ -10,10 +11,11 @@ export default function Edit() {
 
   //  console.log("users =", users);
   const editUserId = users.findIndex((i) => {
-    return i.userId === "Stephan-1989-02-26";
+    return i.userId === params.id;
   });
-  data.setForm(users[editUserId]);
-
+  useEffect(() => {
+    data.setForm(users[editUserId]);
+  }, []);
   return (
     <>
       <h1>User {params.id} wird bearbeitet</h1>
