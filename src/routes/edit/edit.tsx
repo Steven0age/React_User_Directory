@@ -1,5 +1,5 @@
 import InputForm from "../../components/InputForm/InputForm";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import useFormInputs from "../../hooks/useFormInputs";
 import { useEffect } from "react";
@@ -9,16 +9,26 @@ export default function Edit() {
   const params = useParams();
   const { users, updateUser } = useUser();
   const data = useFormInputs();
+  const navigate = useNavigate();
 
   if (params.id) {
     const editUserId = findExistingUser(params.id, users);
 
-    console.log("user =", users);
+    if (editUserId === false) {
+      alert(
+        "Fehler - User mit der ID nicht gefunden! Seitenaufruf wurde abgebrochen"
+      );
+
+      useEffect(() => {
+        navigate("/ansicht");
+      }, []);
+      return;
+    }
+
     useEffect(() => {
       data.setForm(users[editUserId]);
     }, []);
   }
-
   return (
     <>
       <h1>User {params.id} wird bearbeitet</h1>
