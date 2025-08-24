@@ -11,11 +11,19 @@ const requiredKeys: (keyof UserCardProps)[] = [
 ];
 
 export function validateUser(user: UserCardProps) {
-  const allFieldsFilled = requiredKeys.every((i) => user[i].trim() !== "");
+  const allFieldsFilled = requiredKeys.every((i) => {
+    if (typeof user[i] !== "string") {
+      return;
+    }
+    user[i].trim() !== "";
+  });
   return allFieldsFilled;
 }
 
-export function findExistingUser(userId: UserCardProps, users: UserArray) {
+export function findExistingUser(
+  userId: UserCardProps["userId"],
+  users: UserArray
+) {
   const existingUserId = users.findIndex((i) => {
     return i.userId === userId;
   });

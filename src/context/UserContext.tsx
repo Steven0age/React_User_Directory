@@ -49,14 +49,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const saveUser = (newUser: UserCardProps) => {
     if (!validateUser(newUser)) {
-      alert("Bitte zuerst alle Felder ausfüllen");
+      alert("Fehler - Bitte zuerst alle Felder ausfüllen");
       return;
     }
 
     newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
     if (findExistingUser(newUser.userId, users) !== false) {
-      alert("Nicht möglich - User existiert bereits");
+      alert("Fehler - Nicht möglich! User existiert bereits");
       return;
     }
 
@@ -77,7 +77,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const updateUser = (editableUser: UserCardProps) => {
     if (!validateUser(editableUser)) {
-      alert("Bitte zuerst alle Felder ausfüllen");
+      alert("Fehler - Bitte zuerst alle Felder ausfüllen");
       return;
     }
 
@@ -96,6 +96,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     const newArray = [...users];
     const arrayIndex = findExistingUser(editableUser.userId, users);
+    if (!arrayIndex) {
+      alert("Fehler - Nutzer nicht gefunden");
+      return;
+    }
     newArray.splice(arrayIndex, 1, editableUser);
     setUsers(newArray);
   };
