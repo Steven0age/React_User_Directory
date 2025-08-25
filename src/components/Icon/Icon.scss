@@ -8,5 +8,11 @@
     cursor: pointer;
 
     color: $red-color;
+
+    &:hover {
+      color: $white-color;
+      background-color: $red-color;
+      border-radius: 100px;
+    }
   }
 }

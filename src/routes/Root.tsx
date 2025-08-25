@@ -11,7 +11,7 @@ function Root() {
     <div className="root-layout">
       <aside className="sidebar">
         <div className="sidebar__header">
-          <h1>My App</h1>
+          <h1>Nutzer-Verwaltung</h1>
         </div>
         <nav className="sidebar__nav">
           <NavButton buttonName="Übersicht" buttonTarget="/ansicht" />
