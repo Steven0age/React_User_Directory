@@ -31,7 +31,6 @@ export default function Edit() {
   }
   return (
     <>
-      <h1>User {params.id} wird bearbeitet</h1>
       <InputForm
         handleInputChangeEvent={data.handleInputChangeEvent}
         usernameValue={data.usernameValue}

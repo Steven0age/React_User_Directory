@@ -12,7 +12,6 @@ export default function Overview() {
   }
   return (
     <>
-      <h1>Ansicht - Seite</h1>
       <div className="overview">
         {users.map((i) => (
           <UserCard

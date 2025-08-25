@@ -29,7 +29,7 @@ export default function InputForm({
   return (
     <div className="form">
       <form>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Name</label>
         <br></br>
         <input
           type="text"

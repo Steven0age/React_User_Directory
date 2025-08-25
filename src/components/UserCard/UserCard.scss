@@ -2,25 +2,24 @@
 //   width: 100px;
 // }
 .user-card {
-  @include devBorder;
   @include centered-row;
   @include cardDesign;
-  height: 150px;
+  height: 180px;
 
   &__image-area {
     @include centered-row;
     width: 150px;
     height: 150px;
-    border-right: 2px solid red;
   }
   &__image {
     width: 100%;
+    border-radius: 100px;
+    margin-right: 1rem;
   }
 
   &__data-area {
     @include centered-column;
     flex-grow: 1;
-    //background-color: blueviolet;
   }
 }
 
@@ -29,6 +28,7 @@
     @include centered-row;
     justify-content: space-between;
     width: 100%;
+    color: $primary-color;
   }
 
   &__body {
@@ -41,7 +41,11 @@
 
   &__single-data {
     @include centered-row;
+    justify-content: flex-start;
+    align-items: end;
     gap: 0.5rem;
-    background-color: aliceblue;
+    border-bottom: 1px solid $primary-color;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }

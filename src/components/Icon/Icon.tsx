@@ -150,7 +150,7 @@ const iconsLibrary: Record<IconKey, IconEntry> = {
         width="200"
         height="200"
         viewBox="0 0 32 32"
-        className="icon"
+        className="icon icon__delete"
       >
         <path
           fill="currentColor"
