@@ -1,8 +1,6 @@
 import "./Icon.scss";
 
-export type deleteHandler = (
-  event: React.MouseEvent<HTMLDivElement>
-) => void | undefined;
+export type deleteHandler = (event: React.MouseEvent<HTMLDivElement>) => void;
 
 type IconKey =
   | "birth"

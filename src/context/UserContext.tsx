@@ -11,7 +11,6 @@ import { findExistingUser, validateUser } from "../utils/validateUserUtils";
 
 type UserContextType = {
   users: UserArray;
-  user?: UserArray;
   saveUser: (newUser: UserCardProps) => void;
   updateUser: (editableUser: UserCardProps) => void;
   deleteUser: (id: UserCardProps["userId"]) => void;
@@ -22,19 +21,6 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const user = [
-    {
-      pictureUrl: "src/assets/profile-pictures/male.jpg",
-      userName: "Stephan",
-      birthdate: "01.01.1990",
-      address: "Musterstrasse 1",
-      gender: "Männlich",
-      phone: "0815-123456789",
-      mail: "beispiel@mail.de",
-      website: "stephan-haak.com",
-    },
-  ];
-
   const [users, setUsers] = useState<UserArray>(() => {
     const getData = getFromLocalStorage();
     if (!getData || getData.length === 0) {
