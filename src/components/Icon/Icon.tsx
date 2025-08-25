@@ -1,6 +1,6 @@
 import "./Icon.scss";
 
-type deleteHandler = (
+export type deleteHandler = (
   event: React.MouseEvent<HTMLDivElement>
 ) => void | undefined;
 

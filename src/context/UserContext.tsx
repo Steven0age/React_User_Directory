@@ -14,7 +14,7 @@ type UserContextType = {
   user?: UserArray;
   saveUser: (newUser: UserCardProps) => void;
   updateUser: (editableUser: UserCardProps) => void;
-  deleteUser: () => void;
+  deleteUser: (id: UserCardProps["userId"]) => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -105,7 +105,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setUsers(newArray);
   };
 
-  const deleteUser = (id: string) => {
+  const deleteUser = (id: UserCardProps["userId"]) => {
     let index = users.findIndex((i) => {
       return i.userId == id;
     });

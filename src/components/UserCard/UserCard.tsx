@@ -1,6 +1,9 @@
 import Icon from "../Icon/Icon";
 import type { UserCardProps } from "../types/user";
 import "./UserCard.scss";
+import type { deleteHandler } from "../Icon/Icon";
+
+type UserCardComponentProps = UserCardProps & { deleteHandler: deleteHandler };
 
 export default function UserCard({
   pictureUrl,
@@ -13,7 +16,7 @@ export default function UserCard({
   website,
   onClick,
   deleteHandler,
-}: UserCardProps) {
+}: UserCardComponentProps) {
   return (
     <div className="user-card" onClick={onClick}>
       <div className="user-card__image-area">
