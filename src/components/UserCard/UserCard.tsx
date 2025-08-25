@@ -12,6 +12,7 @@ export default function UserCard({
   mail,
   website,
   onClick,
+  deleteHandler,
 }: UserCardProps) {
   return (
     <div className="user-card" onClick={onClick}>
@@ -21,7 +22,7 @@ export default function UserCard({
       <div className="user-card__data-area">
         <div className="structured-data__head">
           <h2>{userName}</h2>
-          <Icon icon="delete" />
+          <Icon icon="delete" deleteHandler={deleteHandler} />
         </div>
         <div className="structured-data__body">
           <div className="structured-data__single-data">

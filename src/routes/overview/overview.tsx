@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export default function Overview() {
-  const { users } = useUser();
+  const { users, deleteUser } = useUser();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -30,6 +30,7 @@ export default function Overview() {
             phone={i.phone}
             mail={i.mail}
             website={i.website}
+            deleteHandler={deleteUser(i.userId)}
           />
         ))}
       </div>

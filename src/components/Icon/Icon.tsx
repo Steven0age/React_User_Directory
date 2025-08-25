@@ -1,5 +1,9 @@
 import "./Icon.scss";
 
+type deleteHandler = (
+  event: React.MouseEvent<HTMLDivElement>
+) => void | undefined;
+
 type IconKey =
   | "birth"
   | "address"
@@ -14,8 +18,14 @@ type IconEntry = {
   code: React.ReactElement;
 };
 
-export default function Icon({ icon }: { icon: IconKey }) {
-  return iconsLibrary[icon].code;
+export default function Icon({
+  icon,
+  deleteHandler,
+}: {
+  icon: IconKey;
+  deleteHandler?: deleteHandler;
+}) {
+  return <div onClick={deleteHandler}>{iconsLibrary[icon].code}</div>;
 }
 
 const iconsLibrary: Record<IconKey, IconEntry> = {
