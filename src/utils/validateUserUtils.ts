@@ -15,8 +15,10 @@ export function validateUser(user: UserCardProps) {
     if (typeof user[i] !== "string") {
       return;
     }
-    user[i].trim() !== "";
+
+    return user[i].trim() !== "";
   });
+
   return allFieldsFilled;
 }
 
