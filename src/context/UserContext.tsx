@@ -106,11 +106,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
 
   const deleteUser = (id: string) => {
-    console.log("deleteUser activated");
     let index = users.findIndex((i) => {
-      return i.id == id;
+      return i.userId == id;
     });
-    console.log("index =", index);
+
+    const newArray = [...users];
+    newArray.splice(index, 1);
+    setUsers(newArray);
   };
 
   const value: UserContextType = {
