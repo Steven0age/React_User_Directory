@@ -7,12 +7,16 @@ import {
 } from "react";
 import type { UserArray, UserCardProps } from "../components/types/user";
 import { addToLocalStorage, getFromLocalStorage } from "../api/api";
-import { findExistingUser, validateUser } from "../utils/validateUserUtils";
+import {
+  findExistingUser,
+  validateEMail,
+  validateUser,
+} from "../utils/validateUserUtils";
 
 type UserContextType = {
   users: UserArray;
   saveUser: (newUser: UserCardProps) => boolean;
-  updateUser: (editableUser: UserCardProps) => void;
+  updateUser: (editableUser: UserCardProps) => boolean;
   deleteUser: (id: UserCardProps["userId"]) => void;
 };
 
@@ -37,6 +41,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const saveUser = (newUser: UserCardProps) => {
     if (!validateUser(newUser)) {
       alert("Fehler - Bitte zuerst alle Felder ausfüllen");
+      return false;
+    }
+
+    if (!validateEMail(newUser)) {
+      alert("Fehler - Bitte eine gültige E-Mail Adresse eingeben");
       return false;
     }
 
@@ -66,7 +75,12 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const updateUser = (editableUser: UserCardProps) => {
     if (!validateUser(editableUser)) {
       alert("Fehler - Bitte zuerst alle Felder ausfüllen");
-      return;
+      return false;
+    }
+
+    if (!validateEMail(editableUser)) {
+      alert("Fehler - Bitte eine gültige E-Mail Adresse eingeben");
+      return false;
     }
 
     editableUser.userId = `${editableUser.userName}-${editableUser.birthdate}`;
@@ -86,10 +100,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const arrayIndex = findExistingUser(editableUser.userId, users);
     if (!arrayIndex) {
       alert("Fehler - Nutzer nicht gefunden");
-      return;
+      return false;
     }
     newArray.splice(arrayIndex, 1, editableUser);
     setUsers(newArray);
+    return true;
   };
 
   const deleteUser = (id: UserCardProps["userId"]) => {

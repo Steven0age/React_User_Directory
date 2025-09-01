@@ -1,4 +1,5 @@
 import type { UserArray, UserCardProps } from "../components/types/user";
+import validator from "validator";
 
 const requiredKeys: (keyof UserCardProps)[] = [
   "userName",
@@ -20,6 +21,13 @@ export function validateUser(user: UserCardProps) {
   });
 
   return allFieldsFilled;
+}
+
+export function validateEMail(user: UserCardProps) {
+  const validEMail = validator.isEmail(user["mail"]);
+
+  console.log("validEMail =", validEMail);
+  return validEMail;
 }
 
 export function findExistingUser(

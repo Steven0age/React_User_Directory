@@ -41,7 +41,7 @@ export default function Edit() {
         phoneValue={data.phoneValue}
         websiteValue={data.websiteValue}
         clickHandler={() => {
-          updateUser({
+          const userUpdated = updateUser({
             pictureUrl: data.genderValue,
             userName: data.usernameValue,
             birthdate: data.birthdateValue,
@@ -52,7 +52,10 @@ export default function Edit() {
             website: data.websiteValue,
             userId: "",
           });
-          data.resetForm();
+          if (userUpdated) {
+            alert("Benutzerdaten wurden aktualisiert");
+            //data.resetForm();
+          }
         }}
       />
     </>
