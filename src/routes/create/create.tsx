@@ -17,7 +17,7 @@ export default function Create() {
         phoneValue={data.phoneValue}
         websiteValue={data.websiteValue}
         clickHandler={() => {
-          saveUser({
+          const userSaved = saveUser({
             pictureUrl: data.genderValue,
             userName: data.usernameValue,
             birthdate: data.birthdateValue,
@@ -28,7 +28,9 @@ export default function Create() {
             website: data.websiteValue,
             userId: "",
           });
-          data.resetForm();
+          if (userSaved) {
+            data.resetForm();
+          }
         }}
       />
     </>

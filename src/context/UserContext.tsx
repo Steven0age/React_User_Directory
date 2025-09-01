@@ -11,7 +11,7 @@ import { findExistingUser, validateUser } from "../utils/validateUserUtils";
 
 type UserContextType = {
   users: UserArray;
-  saveUser: (newUser: UserCardProps) => void;
+  saveUser: (newUser: UserCardProps) => boolean;
   updateUser: (editableUser: UserCardProps) => void;
   deleteUser: (id: UserCardProps["userId"]) => void;
 };
@@ -37,14 +37,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const saveUser = (newUser: UserCardProps) => {
     if (!validateUser(newUser)) {
       alert("Fehler - Bitte zuerst alle Felder ausfüllen");
-      return;
+      return false;
     }
 
     newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
 
     if (findExistingUser(newUser.userId, users) !== false) {
       alert("Fehler - Nicht möglich! User existiert bereits");
-      return;
+      return false;
     }
 
     switch (newUser.gender) {
@@ -60,6 +60,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     const newArray = [...users, newUser];
     setUsers(newArray);
+    return true;
   };
 
   const updateUser = (editableUser: UserCardProps) => {
