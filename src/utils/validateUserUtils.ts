@@ -25,8 +25,6 @@ export function validateUser(user: UserCardProps) {
 
 export function validateEMail(user: UserCardProps) {
   const validEMail = validator.isEmail(user["mail"]);
-
-  console.log("validEMail =", validEMail);
   return validEMail;
 }
 

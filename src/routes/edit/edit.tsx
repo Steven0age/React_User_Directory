@@ -10,11 +10,12 @@ export default function Edit() {
   const { users, updateUser } = useUser();
   const data = useFormInputs();
   const navigate = useNavigate();
+  //let userUpdated: true | false = false;
 
+  const editUserId = findExistingUser(params.id, users);
   if (params.id) {
-    const editUserId = findExistingUser(params.id, users);
-
     if (editUserId === false) {
+      console.log("params.id =", params.id);
       alert(
         "Fehler - User mit der ID nicht gefunden! Seitenaufruf wurde abgebrochen"
       );
@@ -50,7 +51,7 @@ export default function Edit() {
             phone: data.phoneValue,
             mail: data.mailValue,
             website: data.websiteValue,
-            userId: "",
+            userId: users[editUserId].userId,
           });
           if (userUpdated) {
             alert("Benutzerdaten wurden aktualisiert");

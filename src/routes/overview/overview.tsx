@@ -7,7 +7,7 @@ export default function Overview() {
   const { users, deleteUser } = useUser();
   const navigate = useNavigate();
 
-  function editUser(id: string | undefined) {
+  function editUser(id: String | undefined) {
     navigate(`/bearbeiten/${id}`);
   }
   return (

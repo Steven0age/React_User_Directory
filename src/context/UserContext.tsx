@@ -49,8 +49,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
-    newUser.userId = `${newUser.userName}-${newUser.birthdate}`;
+    newUser.userId = Math.random().toString().slice(2);
 
+    //nachfolgend muss angepasst werden - Name und Birthdate muss geprüft werden!
     if (findExistingUser(newUser.userId, users) !== false) {
       alert("Fehler - Nicht möglich! User existiert bereits");
       return false;
@@ -83,7 +84,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
-    editableUser.userId = `${editableUser.userName}-${editableUser.birthdate}`;
+    const arrayIndex = findExistingUser(editableUser.userId, users);
+    if (!arrayIndex) {
+      alert("Fehler - Nutzer nicht gefunden");
+      return false;
+    }
 
     switch (editableUser.gender) {
       case "Männlich":
@@ -97,11 +102,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
 
     const newArray = [...users];
-    const arrayIndex = findExistingUser(editableUser.userId, users);
-    if (!arrayIndex) {
-      alert("Fehler - Nutzer nicht gefunden");
-      return false;
-    }
     newArray.splice(arrayIndex, 1, editableUser);
     setUsers(newArray);
     return true;
