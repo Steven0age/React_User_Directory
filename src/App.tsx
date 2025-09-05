@@ -3,40 +3,43 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root, Overview, Create, Edit } from "./routes/Root";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root />,
-      children: [
-        {
-          index: true,
-          element: <Overview />,
-        },
-        {
-          path: "ansicht",
-          element: <Overview />,
-        },
-        {
-          path: "erstellen",
-          element: <Create />,
-        },
-        {
-          path: "bearbeiten",
-          element: <Edit />,
-          children: [
-            {
-              index: true,
-              element: <Edit />,
-            },
-            {
-              path: ":id",
-              element: <Edit />,
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Root />,
+        children: [
+          {
+            index: true,
+            element: <Overview />,
+          },
+          {
+            path: "ansicht",
+            element: <Overview />,
+          },
+          {
+            path: "erstellen",
+            element: <Create />,
+          },
+          {
+            path: "bearbeiten",
+            element: <Edit />,
+            children: [
+              {
+                index: true,
+                element: <Edit />,
+              },
+              {
+                path: ":id",
+                element: <Edit />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    { basename: import.meta.env.BASE_URL }
+  );
 
   return <RouterProvider router={router} />;
 }
