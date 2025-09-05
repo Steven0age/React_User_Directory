@@ -83,7 +83,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
-    const arrayIndex = findExistingUser(editableUser, users);
+    if (findExistingUser(editableUser, users) >= 0) {
+      alert(
+        "Fehler - Nicht möglich! User mit diesem Namen und Geburstdatum existiert bereits"
+      );
+      return false;
+    }
+
+    const arrayIndex = findExistingUser(editableUser.userId, users);
     if (!arrayIndex) {
       alert("Fehler - Nutzer nicht gefunden");
       return false;
