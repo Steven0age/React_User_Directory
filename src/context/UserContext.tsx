@@ -52,7 +52,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     newUser.userId = Math.random().toString().slice(2);
 
     //nachfolgend muss angepasst werden - Name und Birthdate muss geprüft werden!
-    if (findExistingUser(newUser.userId, users) >= 0) {
+    if (findExistingUser(newUser, users) >= 0) {
       alert("Fehler - Nicht möglich! User existiert bereits");
       return false;
     }

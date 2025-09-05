@@ -28,14 +28,11 @@ export function validateEMail(user: UserCardProps) {
   return validEMail;
 }
 
-export function findExistingUser(
-  //hier muss auch Name+Birthdate abgeprüft werden
-  userId: UserCardProps["userId"],
-  users: UserArray
-) {
+export function findExistingUser(singleUser: UserCardProps, users: UserArray) {
   const existingUserId = users.findIndex((i) => {
-    return i.userId === userId;
+    return (
+      i.userName === singleUser.userName && i.birthdate === singleUser.birthdate
+    );
   });
-
-  return existingUserId >= 0 ? existingUserId : -1;
+  return existingUserId;
 }
