@@ -10,26 +10,22 @@ export default function Edit() {
   const { users, updateUser } = useUser();
   const data = useFormInputs();
   const navigate = useNavigate();
-  //let userUpdated: true | false = false;
-
   const editUserId = findExistingUser(params.id, users);
-  if (params.id) {
-    if (editUserId === false) {
-      console.log("params.id =", params.id);
-      alert(
-        "Fehler - User mit der ID nicht gefunden! Seitenaufruf wurde abgebrochen"
-      );
 
-      useEffect(() => {
-        navigate("/ansicht");
-      }, []);
+  useEffect(() => {
+    if (editUserId === -1) {
+      alert(
+        "Fehler - User mit dieser ID nicht gefunden! Seitenaufruf wurde abgebrochen"
+      );
+      navigate("/ansicht");
+
       return;
     }
-
-    useEffect(() => {
+    if (editUserId >= 0) {
       data.setForm(users[editUserId]);
-    }, []);
-  }
+    }
+  }, [editUserId]);
+
   return (
     <>
       <InputForm
@@ -55,7 +51,6 @@ export default function Edit() {
           });
           if (userUpdated) {
             alert("Benutzerdaten wurden aktualisiert");
-            //data.resetForm();
           }
         }}
       />
