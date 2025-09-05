@@ -5,6 +5,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import male from "@/assets/profile-pictures/male.jpg";
+import female from "@/assets/profile-pictures/female.jpg";
+import diverse from "@/assets/profile-pictures/diverse.png";
 import type { UserArray, UserCardProps } from "../components/types/user";
 import { addToLocalStorage, getFromLocalStorage } from "../api/api";
 import {
@@ -58,13 +61,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     switch (newUser.gender) {
       case "Männlich":
-        newUser.pictureUrl = "src/assets/profile-pictures/male.jpg";
+        newUser.pictureUrl = male;
         break;
       case "Weiblich":
-        newUser.pictureUrl = "src/assets/profile-pictures/female.jpg";
+        newUser.pictureUrl = female;
         break;
       default:
-        newUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
+        newUser.pictureUrl = diverse;
     }
 
     const newArray = [...users, newUser];
@@ -98,13 +101,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     switch (editableUser.gender) {
       case "Männlich":
-        editableUser.pictureUrl = "src/assets/profile-pictures/male.jpg";
+        editableUser.pictureUrl = male;
         break;
       case "Weiblich":
-        editableUser.pictureUrl = "src/assets/profile-pictures/female.jpg";
+        editableUser.pictureUrl = female;
         break;
       default:
-        editableUser.pictureUrl = "src/assets/profile-pictures/diverse.png";
+        editableUser.pictureUrl = diverse;
     }
 
     const newArray = [...users];
