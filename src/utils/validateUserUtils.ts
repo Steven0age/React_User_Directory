@@ -28,11 +28,25 @@ export function validateEMail(user: UserCardProps) {
   return validEMail;
 }
 
-export function findExistingUser(singleUser: UserCardProps, users: UserArray) {
-  const existingUserId = users.findIndex((i) => {
-    return (
-      i.userName === singleUser.userName && i.birthdate === singleUser.birthdate
-    );
-  });
+export function findExistingUser(
+  userIdentifier: string | undefined | UserCardProps,
+  users: UserArray
+): number {
+  let existingUserId = -1;
+
+  if (typeof userIdentifier === "string") {
+    existingUserId = users.findIndex((i) => {
+      return i.userId === userIdentifier;
+    });
+  }
+
+  if (typeof userIdentifier === "object") {
+    existingUserId = users.findIndex((i) => {
+      return (
+        i.userName === userIdentifier.userName &&
+        i.birthdate === userIdentifier.birthdate
+      );
+    });
+  }
   return existingUserId;
 }

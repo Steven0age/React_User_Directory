@@ -51,7 +51,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     newUser.userId = Math.random().toString().slice(2);
 
-    //nachfolgend muss angepasst werden - Name und Birthdate muss geprüft werden!
     if (findExistingUser(newUser, users) >= 0) {
       alert("Fehler - Nicht möglich! User existiert bereits");
       return false;
@@ -84,7 +83,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
-    const arrayIndex = findExistingUser(editableUser.userId, users);
+    const arrayIndex = findExistingUser(editableUser, users);
     if (!arrayIndex) {
       alert("Fehler - Nutzer nicht gefunden");
       return false;
