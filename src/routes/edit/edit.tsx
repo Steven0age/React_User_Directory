@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import useFormInputs from "../../hooks/useFormInputs";
 import { useEffect } from "react";
-import { findExistingUser } from "../../utils/validateUserUtils";
+import { findExistingUserId } from "../../utils/validateUserUtils";
 
 export default function Edit() {
   const params = useParams();
   const { users, updateUser } = useUser();
   const data = useFormInputs();
   const navigate = useNavigate();
-  const editUserId = findExistingUser(params.id, users);
+  const editUserId = findExistingUserId(params.id, users);
 
   useEffect(() => {
     if (editUserId === -1) {

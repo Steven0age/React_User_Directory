@@ -11,7 +11,7 @@ const requiredKeys: (keyof UserCardProps)[] = [
   "website",
 ];
 
-export function validateUser(user: UserCardProps) {
+export function validateAllFieldsFilledIn(user: UserCardProps) {
   const allFieldsFilled = requiredKeys.every((i) => {
     if (typeof user[i] !== "string") {
       return;
@@ -28,25 +28,37 @@ export function validateEMail(user: UserCardProps) {
   return validEMail;
 }
 
-export function findExistingUser(
-  userIdentifier: string | undefined | UserCardProps,
+export function findExistingUserId(
+  idToCheck: UserCardProps["userId"],
   users: UserArray
 ): number {
-  let existingUserId = -1;
+  const existingUserId = users.findIndex((i) => {
+    return i.userId === idToCheck;
+  });
 
-  if (typeof userIdentifier === "string") {
-    existingUserId = users.findIndex((i) => {
-      return i.userId === userIdentifier;
-    });
-  }
-
-  if (typeof userIdentifier === "object") {
-    existingUserId = users.findIndex((i) => {
-      return (
-        i.userName === userIdentifier.userName &&
-        i.birthdate === userIdentifier.birthdate
-      );
-    });
-  }
   return existingUserId;
+}
+
+export function findDuplicateByNameAndBirthdate(
+  userToCheck: UserCardProps,
+  users: UserArray
+): boolean {
+  const doesUSerWithSameNameAndBirthdateExist = users.findIndex((i) => {
+    return (
+      i.userName === userToCheck.userName &&
+      i.birthdate === userToCheck.birthdate
+    );
+  });
+
+  if (doesUSerWithSameNameAndBirthdateExist === -1) {
+    return false;
+  }
+
+  if (
+    users[doesUSerWithSameNameAndBirthdateExist].userId == userToCheck.userId
+  ) {
+    return false;
+  }
+
+  return true;
 }

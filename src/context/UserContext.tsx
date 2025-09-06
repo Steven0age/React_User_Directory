@@ -11,9 +11,10 @@ import diverse from "@/assets/profile-pictures/diverse.png";
 import type { UserArray, UserCardProps } from "../components/types/user";
 import { addToLocalStorage, getFromLocalStorage } from "../api/api";
 import {
-  findExistingUser,
+  findDuplicateByNameAndBirthdate,
+  findExistingUserId,
   validateEMail,
-  validateUser,
+  validateAllFieldsFilledIn,
 } from "../utils/validateUserUtils";
 
 type UserContextType = {
@@ -42,7 +43,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, [users]);
 
   const saveUser = (newUser: UserCardProps) => {
-    if (!validateUser(newUser)) {
+    if (!validateAllFieldsFilledIn(newUser)) {
       alert("Fehler - Bitte zuerst alle Felder ausfüllen");
       return false;
     }
@@ -54,7 +55,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     newUser.userId = Math.random().toString().slice(2);
 
-    if (findExistingUser(newUser, users) >= 0) {
+    if (findExistingUserId(newUser.userId, users) >= 0) {
       alert("Fehler - Nicht möglich! User existiert bereits");
       return false;
     }
@@ -76,7 +77,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
 
   const updateUser = (editableUser: UserCardProps) => {
-    if (!validateUser(editableUser)) {
+    if (!validateAllFieldsFilledIn(editableUser)) {
       alert("Fehler - Bitte zuerst alle Felder ausfüllen");
       return false;
     }
@@ -86,14 +87,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
-    if (findExistingUser(editableUser, users) >= 0) {
+    if (findDuplicateByNameAndBirthdate(editableUser, users)) {
       alert(
         "Fehler - Nicht möglich! User mit diesem Namen und Geburstdatum existiert bereits"
       );
       return false;
     }
 
-    const arrayIndex = findExistingUser(editableUser.userId, users);
+    const arrayIndex = findExistingUserId(editableUser.userId, users);
     if (!arrayIndex) {
       alert("Fehler - Nutzer nicht gefunden");
       return false;
