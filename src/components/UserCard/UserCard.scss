@@ -2,11 +2,13 @@
   @include centered-row;
   @include cardDesign;
   height: 180px;
+  width: 600px;
+  font-size: clamp(0.6rem, 3vw, 1rem);
 
   &__image-area {
     @include centered-row;
-    width: 150px;
-    height: 150px;
+    width: clamp(60px, 30vw, 150px);
+    height: clamp(60px, 30vw, 150px);
   }
   &__image {
     width: 100%;
@@ -33,13 +35,14 @@
     justify-content: space-between;
     width: 100%;
     color: $primary-color;
+    font-size: clamp(0.7rem, 3vw, 1rem);
   }
 
   &__body {
     display: grid;
     justify-content: start;
     width: 100%;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
@@ -51,5 +54,11 @@
     border-bottom: 1px solid $primary-color;
     overflow-wrap: break-word;
     word-break: break-word;
+  }
+}
+
+@include breakpoint(smartphone) {
+  .user-card {
+    width: 100vw;
   }
 }

@@ -26,3 +26,16 @@
   border-radius: 10px;
   padding: 1rem;
 }
+
+@mixin breakpoint($point) {
+  @if $point == smartphone {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $point == tablet {
+    @media (max-width: 991px) {
+      @content;
+    }
+  }
+}

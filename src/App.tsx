@@ -1,4 +1,3 @@
-import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root, Overview, Create, Edit } from "./routes/Root";
 
