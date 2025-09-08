@@ -1,0 +1,18 @@
+.popup {
+  position: absolute;
+  @include centered-row();
+  @include cardDesign;
+  background-color: rgba($white-color, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+
+  color: $primary-color;
+
+  &__content {
+    font-size: 3rem;
+  }
+  &--disabled {
+    display: none;
+  }
+}

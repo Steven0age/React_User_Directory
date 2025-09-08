@@ -4,6 +4,7 @@ import Overview from "./overview/overview";
 import Create from "./create/create";
 import Edit from "./edit/edit";
 import NavButton from "../components/NavButton/NavButton";
+import PopUp from "../components/PopUp/PopUp";
 
 export { Root, Overview, Create, Edit };
 function Root() {
@@ -21,6 +22,7 @@ function Root() {
       <main className="content">
         <Outlet />
       </main>
+      <PopUp showPopup={false} />
     </div>
   );
 }
