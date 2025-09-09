@@ -5,9 +5,12 @@ import Create from "./create/create";
 import Edit from "./edit/edit";
 import NavButton from "../components/NavButton/NavButton";
 import PopUp from "../components/PopUp/PopUp";
+import { useUser } from "../context/UserContext";
 
 export { Root, Overview, Create, Edit };
 function Root() {
+  const { showPopup } = useUser();
+
   return (
     <div className="root-layout">
       <aside className="sidebar">
@@ -22,7 +25,7 @@ function Root() {
       <main className="content">
         <Outlet />
       </main>
-      <PopUp showPopup={false} />
+      {showPopup && <PopUp popupVisibility={showPopup} />}
     </div>
   );
 }

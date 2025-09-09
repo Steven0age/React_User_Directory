@@ -22,6 +22,9 @@ type UserContextType = {
   saveUser: (newUser: UserCardProps) => boolean;
   updateUser: (editableUser: UserCardProps) => boolean;
   deleteUser: (id: UserCardProps["userId"]) => void;
+  mountPopup: boolean;
+  setMountPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  showPopup: boolean;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -29,6 +32,9 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const [mountPopup, setMountPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
   const [users, setUsers] = useState<UserArray>(() => {
     const getData = getFromLocalStorage();
     if (!getData || getData.length === 0) {
@@ -41,6 +47,20 @@ export function UserProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     addToLocalStorage(users);
   }, [users]);
+
+  useEffect(() => {
+    if (mountPopup) {
+      setInterval(() => {
+        setShowPopup(false);
+      }, 5000);
+      setShowPopup(true);
+    }
+    if (!showPopup) {
+      setInterval(() => {
+        setMountPopup(false);
+      }, 15000);
+    }
+  }, [mountPopup, showPopup]);
 
   const saveUser = (newUser: UserCardProps) => {
     if (!validateAllFieldsFilledIn(newUser)) {
@@ -73,6 +93,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     const newArray = [...users, newUser];
     setUsers(newArray);
+    setMountPopup(true);
     return true;
   };
 
@@ -132,6 +153,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
     saveUser,
     updateUser,
     deleteUser,
+    mountPopup,
+    setMountPopup,
+    showPopup,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

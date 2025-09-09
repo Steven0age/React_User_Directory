@@ -4,7 +4,7 @@ import useFormInputs from "../../hooks/useFormInputs";
 
 export default function Create() {
   const data = useFormInputs();
-  const { saveUser } = useUser();
+  const { saveUser, setMountPopup } = useUser();
   return (
     <>
       <InputForm
@@ -30,6 +30,7 @@ export default function Create() {
           });
           if (userSaved) {
             data.resetForm();
+            setMountPopup(true);
           }
         }}
       />

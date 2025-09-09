@@ -7,7 +7,7 @@ import { findExistingUserId } from "../../utils/validateUserUtils";
 
 export default function Edit() {
   const params = useParams();
-  const { users, updateUser } = useUser();
+  const { users, updateUser, setMountPopup } = useUser();
   const data = useFormInputs();
   const navigate = useNavigate();
   const editUserId = findExistingUserId(params.id, users);
@@ -50,7 +50,8 @@ export default function Edit() {
             userId: users[editUserId].userId,
           });
           if (userUpdated) {
-            alert("Benutzerdaten wurden aktualisiert");
+            setMountPopup(true);
+            //alert("Benutzerdaten wurden aktualisiert");
           }
         }}
       />

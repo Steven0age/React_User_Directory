@@ -2,12 +2,12 @@ import FadeContent from "../FadeContent/FadeContent";
 import "./PopUp.scss";
 
 type PopUpProps = {
-  showPopup: Boolean;
+  popupVisibility: Boolean;
 };
 
-export default function PopUp({ showPopup }: PopUpProps) {
+export default function PopUp({ popupVisibility }: PopUpProps) {
   return (
-    <div className={`popup ${showPopup ? "" : "popup--disabled"}`}>
+    <div className={`${popupVisibility ? "popup" : "popup popup--disabled"}`}>
       <FadeContent
         blur={true}
         duration={1000}
