@@ -51,7 +51,6 @@ export default function Edit() {
           });
           if (userUpdated) {
             setMountPopup(true);
-            //alert("Benutzerdaten wurden aktualisiert");
           }
         }}
       />

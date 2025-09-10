@@ -9,7 +9,7 @@ import { useUser } from "../context/UserContext";
 
 export { Root, Overview, Create, Edit };
 function Root() {
-  const { showPopup } = useUser();
+  const { showPopup, mountPopup } = useUser();
 
   return (
     <div className="root-layout">
@@ -25,7 +25,7 @@ function Root() {
       <main className="content">
         <Outlet />
       </main>
-      {showPopup && <PopUp popupVisibility={showPopup} />}
+      {mountPopup && <PopUp popupVisibility={showPopup} />}
     </div>
   );
 }

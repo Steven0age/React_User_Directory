@@ -10,7 +10,7 @@ export default function PopUp({ popupVisibility }: PopUpProps) {
     <div className={`${popupVisibility ? "popup" : "popup popup--disabled"}`}>
       <FadeContent
         blur={true}
-        duration={1000}
+        duration={200}
         easing="ease-out"
         initialOpacity={0}
       >

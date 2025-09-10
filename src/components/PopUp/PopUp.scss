@@ -1,5 +1,4 @@
 .popup {
-  transition: all 200ms ease-in;
   position: absolute;
   @include centered-row();
   @include cardDesign;
@@ -14,8 +13,7 @@
     font-size: 3rem;
   }
   &--disabled {
-    transition: all 200ms ease-in;
-    background-color: green;
-    //display: none;
+    transition: all 200ms ease-out;
+    opacity: 0;
   }
 }

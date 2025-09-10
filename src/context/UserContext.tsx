@@ -50,17 +50,18 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (mountPopup) {
-      setInterval(() => {
+      console.log("useEffect started");
+      setTimeout(() => {
         setShowPopup(false);
-      }, 5000);
+      }, 1000);
+
       setShowPopup(true);
-    }
-    if (!showPopup) {
-      setInterval(() => {
+
+      setTimeout(() => {
         setMountPopup(false);
-      }, 15000);
+      }, 1100);
     }
-  }, [mountPopup, showPopup]);
+  }, [mountPopup]);
 
   const saveUser = (newUser: UserCardProps) => {
     if (!validateAllFieldsFilledIn(newUser)) {
