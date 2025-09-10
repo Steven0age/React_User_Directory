@@ -15,7 +15,18 @@
 
   .submit-btn {
     background-color: $primary-color;
-    width: unset;
+    color: $black-color;
     cursor: pointer;
+    border-radius: 6px;
+  }
+}
+
+@include breakpoint(tablet) {
+  .form {
+    input,
+    select,
+    button {
+      width: 100%;
+    }
   }
 }
